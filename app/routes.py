@@ -2,7 +2,7 @@ from app import app
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm
 from flask_login import current_user, login_user, logout_user
-from app.models import User,Sanjiang, Richman
+from app.models import User,Sanjiang, Richman, Bilibili
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
@@ -101,7 +101,14 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
+
 @app.route('/sanjiang.html')
 def sanjiang():
     book = Sanjiang.query.all()
     return render_template('sanjiang.html', books=book)
+
+
+@app.route('/bilibili.html')
+def bilibili():
+    vedio = Bilibili.query.all()
+    return render_template('bilibili.html', vedios=vedio)

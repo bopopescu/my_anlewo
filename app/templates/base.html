@@ -1,40 +1,30 @@
-<!DOCTYPE html>
-<html lang="zh">
-    <head>
-      {% if title %}
-      <title>{{ title }} - Microblog</title>
-      {% else %}
-      <title>Welcome to Microblog</title>
-      {% endif %}
-    </head>
-    <body>
+{% extends "bootstrap/base.html" %}
+    {% block content%}
         <div>
            Microblog:
                 <a href="{{ url_for('index') }}">Home</a>
 
                 {% if current_user.is_anonymous %}
                     <a href="{{ url_for('login') }}">Login</a>
-                    <a href="{{ url_for('sanjiang') }}">三江</a>
+                    <hr>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                                    {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
                 {% else %}
                     <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+                    <a href="{{ url_for('sanjiang') }}">三江</a>
+                    <a href="{{ url_for('bilibili') }}">B站</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
         {% endif %}
         </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
-<script>
+    {% endblock content %}
+
     {% block scripts %}
         {{ moment.include_moment() }}
     {% endblock %}
-</script>
-</html>

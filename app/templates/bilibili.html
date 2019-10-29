@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>B站三日榜前20</h1>
+    <ol>
+        {% for foo in vedios %}
+            <li>
+                <a href="{{ foo.href }}" target="_blank">{{ foo.title }}
+                    <div class="img-lazy">
+                        <img alt="{{ foo.title }}" src="{{ foo.src }}">
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

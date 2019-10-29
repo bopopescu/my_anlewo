@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}起点三江{% endblock %}
 {% block content %}
-    <h4>起点网三江排行榜最新消息</h4>
+    <h1>起点网三江排行榜最新消息</h1>
     <ol>
         {% for book in books %}
             <li><a href="{{ book.href }}">{{ book.bookname }}</a></li>

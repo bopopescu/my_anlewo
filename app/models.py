@@ -62,6 +62,13 @@ class Richman(db.Model):
     money = db.Column(db.String(140))
 
 
+class Bilibili(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    src = db.Column(db.String(140))
+    title = db.Column(db.String(140))
+    href = db.Column(db.String(140))
+
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
